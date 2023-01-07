@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Wordcount</title>
+    <link rel="stylesheet" href="header.css" />
+  </head>
+  <body>
+    <div class="flex">
+      <div class="Title">Word Count</div>
+      <textarea
+        name="textbar"
+        id="textbar"
+        cols="30"
+        rows="10"
+        class="input-bar"
+        placeholder="type something"
+      ></textarea>
+      <div class="counting-flex">
+        <div class="counting-grid">
+          <div class="grid">
+            <div class="word-count-subtitle">word count:</div>
+            <div id="wordcount" class="wordcount"></div>
+          </div>
+          <div class="grid">
+            <div class="word-count-subtitle">chararter count:</div>
+            <div id="charartercount" class="wordcount"></div>
+          </div>
+        </div>
+        <button class="check" onclick="checkWordCount()">Enter</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    var wordCount = 0;
+    var chararterCount = document.getElementById("textbar").value.length;
+
+    function receiveWord() {
+      chararterCount = document.getElementById("textbar").value.length;
+      console.log(chararterCount);
+
+      const word = document.getElementById("textbar").value;
+      var i = 0;
+      wordCount = 0;
+
+      while (i < word.length) {
+        if (word.substring(i, i + 1) == " ") {
+          wordCount = wordCount + 1;
+        }
+
+        i = i + 1;
+      }
+      if (word.length > 0) {
+        wordCount = wordCount + 1;
+      }
+      console.log(wordCount);
+      console.log("ok");
+    }
+
+    function displayvalue(innerText, getElementById) {
+      document.getElementById(getElementById).innerHTML = " ";
+      const Element = document.createElement("div");
+      Element.innerText = innerText;
+      const elementId = document.getElementById(getElementById);
+      elementId.appendChild(Element);
+    }
+
+    function checkWordCount() {
+      receiveWord();
+      displayvalue(wordCount, "wordcount");
+      displayvalue(chararterCount, "charartercount");
+    }
+  </script>
+</html>
